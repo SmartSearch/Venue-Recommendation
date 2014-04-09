@@ -1,9 +1,26 @@
+/**
+Copyright (C) 2014 Romain Deveaud <romain.deveaud@gmail.com> and the
+SMART FP7 project <http://smartfp7.eu>.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the Apache License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+*/
+
+// Compatibility with older jQuery.
 jQuery.fn.exists = function(){return jQuery(this).length>0;}
 
+/** We condidere a predefined user location in the city center
+ * of London. */
 var user_location = "51.513657,-0.135594";
 var user_lon      = "-0.135594";
 var user_lat      = "51.513657";
 
+/** Get the Facebook information from the user after he has been
+ * identified. */
 var user_id = $("#div_user_id").val();
 var user_token = $("#div_user_token").val();
 
@@ -11,15 +28,25 @@ var json_global;
 
 $(document).ready(function()
 {
+  /** When the user inputs some coordinates in the dedicated input
+   * box, his location is changed and the recommendations are updated
+   * accordingly. */
   $( "#location_form" ).submit( function(event) {
+    // Spinner activation.
     $("button").addClass('active'); 
+
+    // Get the coordinates values.
     user_location = $("input:first").val();
     user_lon = user_location.split(",")[1];
     user_lat = user_location.split(",")[0];
+
+    // Reload the map.
     $("#gmap").empty();
+    // Update the recommendations.
     getRecommendations(user_id,user_token);
     return false;
   });
+
 
   $("#sample_b").click( function(event) {
     $("#div_user_id").val("881725327");
