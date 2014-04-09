@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Venue Suggestion</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="http://www.smartfp7.eu/sites/default/files/Smart.Lupa_.png" type="image/png" />
+    <link rel="stylesheet" href="stylesheets/app.css" />
+    <link rel="stylesheet" href="stylesheets/libs.min.css" />
+    <!-- Latest compiled and minified CSS --> 
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />
+    <link href="stylesheets/sticky-footer-navbar.css" rel="stylesheet" />
+    <link href="stylesheets/font-awesome.min.css" rel="stylesheet" />
+  </head>
+  <body>
+        <!-- Wrap all page content here -->
+    <div id="wrap">
+    <div id="fb-root"></div>
+
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">Venue Suggestion</a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a><fb:login-button autologoutlink='true' perms='user_likes,user_checkins,user_status,user_subscriptions'>Log In With Facebook</fb:login-button></a></li>
+              <li><a href="privacy.html">Privacy</a></li>
+              <li><a href="assessments.html">Assessments (research study)</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login as <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" id="sample_a">Sample user A (likes Music &amp; Books)</a></li>
+                  <li><a href="#" id="sample_b">Sample user B (likes Middle East cuisine &amp; Technology)</a></li>
+<!--
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+-->
+                </ul>
+              </li>
+              <li><a href="http://www.smartfp7.eu" target="_blank"><img src="http://www.smartfp7.eu/sites/all/themes/zen/smart/logo.png" class="smart_logo" alt="Smart logo" /></a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+
+      <!-- Begin page content -->
+      <div class="container">
+        <div class="alert alert-info alert-dismissable" style="display:none;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Notice:</strong> You are now seeing suggestions for <span id="sample_user_alert_text"></span>.
+        </div>
+        <div class="page-header">
+          <h1>Time-aware prediction and recommendation of activities</h1>
+        </div>
+
+        <div class="page-header container">
+          <p><span class="em">Disclaimer: you need to log in with Facebook in order see personalized suggestions. By doing so, you explicitly agree to provide this application with the Facebook pages that you Like. Please find more details on our <a href="privacy.html">Privacy page</a>.</span></p>
+          <p class="lead">Discover some suggestions based on the <span class="em">things you like</span> and on the <span class="em">predicted activity</span> of several places.</p>
+          <p>This web application connects to Facebook to examine the <span class="em">pages you like</span> to infer your <span class="em">preferences</span>.
+             It also uses freely available data from <a href="https://foursquare.com/" target="_blank">Foursquare</a> to build statistical models of venue attendance levels, which allow to predict when people find venues interesting.
+          </p>
+          <p>
+            This application currently only operates with venues in <span class="em">London</span>, <span class="em">Amsterdam</span>, <span class="em">San Francisco</span> and <span class="em">Glasgow</span>. Other cities will be added in the near future.
+          </p>
+          <p>
+            The first step is for you to log in with Facebook, and then enter your location coordinates in the text box below. 
+            Alternatively, you can try a selection of predefined locations by clicking the following links, and see your tailored recommendations:
+            <ul class="sample_locations">
+              <li><a href="#" id="picca_london">Soho, London city center</a></li>
+              <li><a href="#" id="dam_square">Dam Square, Amsterdam city center</a></li>
+              <li><a href="#" id="center_sf">Financial district, San Francisco</a></li>
+              <li><a href="#" id="byres_glasgow">Byres Road, Glasgow west end</a></li>
+            </ul>
+          </p>
+        </div>
+        <div class="form-group">
+          <form id="location_form">
+          <input type="text" placeholder="Location coordinates" autofocus id="location_input" />
+          <button class="btn btn-sm btn-primary has-spinner" type="submit">
+          <span class="spinner"><i class="fa fa-refresh fa-spin"></i></span>
+          Get suggestions !
+          </button>
+          <span style="margin-left:15px;"></span>or <span class="em">double-click anywhere on the map</span> to set your own location. 
+          </form>
+        </div>
+        <div class="four columns mobile-two">
+            <div class="three columns">
+              <div class="gmap" id="gmap"></div>
+            <div id="slider"></div>
+            </div>
+            <div class="one columns">
+              <div id="controls"></div>
+            </div>
+        </div>
+      </div>
+      <div id="results"></div>
+      <div id="div_user_id"></div>
+      <div id="div_user_token"></div>
+    </div>
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">A web application by the <a href="http://terrierteam.dcs.gla.ac.uk">Terrier Team</a> of the <a href="http://www.gla.ac.uk">University of Glasgow</a> for the <a href="http://www.smartfp7.eu">SMART FP7 project</a>. Developed by <a href="http://romaindeveaud.info">Romain Deveaud</a>.</p>
+      </div>
+    </div>
+    <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7">
+    </script>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script src="http://code.highcharts.com/stock/highstock.js"></script>
+    <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script type="text/javascript" src="js/maplace.js"></script>
+    <script type="text/javascript" src="js/venue_map.js"></script>
+    <script>
+    (function() {
+      var e = document.createElement('script');
+      e.type = 'text/javascript';
+      e.src = 'http://connect.facebook.net/en_US/all.js';
+      e.async = true;
+      document.getElementById('fb-root').appendChild(e);
+    }());
+    </script>
+    <script type="text/javascript" src="js/fbl.js"></script>
+  </body>
+</html>

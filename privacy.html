@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Venue Suggestion</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="http://www.smartfp7.eu/sites/default/files/Smart.Lupa_.png" type="image/png" />
+    <link rel="stylesheet" href="stylesheets/app.css">
+    <link rel="stylesheet" href="stylesheets/libs.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link href="stylesheets/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="stylesheets/font-awesome.min.css" rel="stylesheet">
+  </head>
+  <body>
+        <!-- Wrap all page content here -->
+    <div id="wrap">
+    <div id="fb-root"></div>
+
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Venue Suggestion</a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a><fb:login-button autologoutlink='true' perms='user_likes,user_checkins,user_status,user_subscriptions'>Log In With Facebook</fb:login-button></a></li>
+              <li><a href="privacy.html">Privacy</a></li>
+              <li><a href="assessments.html">Assessments (research study)</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login as <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" id="sample_a">Sample user A (likes Music &amp; Books)</a></li>
+                  <li><a href="#" id="sample_b">Sample user B (likes Middle East cuisine &amp; Technology)</a></li>
+<!--
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+-->
+                </ul>
+              </li>
+              <li><a href="http://www.smartfp7.eu" target="_blank"><img src="http://www.smartfp7.eu/sites/all/themes/zen/smart/logo.png" class="smart_logo" alt="Smart logo" /></a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+
+      <!-- Begin page content -->
+      <div class="container">
+        <div class="page-header">
+          <h1>Privacy policy</h1>
+        </div>
+        <div class="page-header container">
+          <p>This web application asks users to connect with their Facebook accounts in order to see the pages they like.
+          When connecting for the first time, they are asked by the Facebook authentication plugin to allow the application to access these information.</p>
+          <p>Although connecting with Facebook automatically shares the public profile of a user (see <a href="https://developers.facebook.com/docs/reference/login/public-profile-and-friend-list/">Public Profile and Friend List</a> for more information), this application do not use any other information than the Facebook pages the users like. By logging in with their Facebook account and allowing the application to see their likes, <span class="em">users explicitly share these information</span> with the application.</p>
+          <p>When users participate in our research study, we only store their judgments when assessing the relevance of suggestions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">A web application by the <a href="http://terrierteam.dcs.gla.ac.uk">Terrier Team</a> of the <a href="http://www.gla.ac.uk">University of Glasgow</a> for the <a href="http://www.smartfp7.eu">SMART FP7 project</a>. Developed by <a href="http://romaindeveaud.info">Romain Deveaud</a>.</p>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <script>
+    (function() {
+      var e = document.createElement('script');
+      e.type = 'text/javascript';
+      e.src = 'http://connect.facebook.net/en_US/all.js';
+      e.async = true;
+      document.getElementById('fb-root').appendChild(e);
+    }());
+    </script>
+    <script type="text/javascript" src="js/fbl.js"></script>
+  </body>
+</html>
