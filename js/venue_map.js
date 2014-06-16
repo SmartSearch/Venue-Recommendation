@@ -1,14 +1,17 @@
-/**
-Copyright (C) 2014 Romain Deveaud <romain.deveaud@gmail.com> and the
-SMART FP7 project <http://smartfp7.eu>.
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the Apache License.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
-*/
+/* 
+ * SMART FP7 - Search engine for MultimediA enviRonment generated contenT
+ * Webpage: http://smartfp7.eu
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * The Original Code is Copyright (c) 2012-2014 University of Glasgow.
+ * All Rights Reserved
+ *
+ * Contributor(s):
+ *  Romain Deveaud <romain.deveaud@glasgow.ac.uk>
+ */
 
 // Compatibility with older jQuery.
 jQuery.fn.exists = function(){return jQuery(this).length>0;}
@@ -142,8 +145,10 @@ function getObjectsEqual(obj, key, val) {
 
 function computeScores(json,current_hour) {
   for(i=0;i<json.length;++i) {
-    json[i].score =  (json[i].facebook_score) * 
-      (getObjectsEqual(json[i].forecast.neural_nets, 'dateString', current_hour)[0].prob);
+    if(getObjectsEqual(json[i].forecast.neural_nets, 'dateString', current_hour)[0] != null) {
+      json[i].score =  (json[i].facebook_score) * 
+        (getObjectsEqual(json[i].forecast.neural_nets, 'dateString', current_hour)[0].prob);
+    }
   }
   return json;
 }
@@ -253,6 +258,7 @@ function timeSeriesAll(json) {
 function drawMap(current_hour) {
 //  json = getObjectsSup(json, 'facebook_score', '0');
   json = computeScores(json_global, current_hour);
+
   var prop = "score";
   json = json.sort(function(a, b) {
     return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
